@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    --theme-main-color: #FE5F55;
+    --theme-second-color: #577399;
+    --theme-third-color: #BDD5EA;
+    --theme-fourth-color: #495867;
+    --theme-fifth-color: #F7F7FF;
+    --theme-sixth-color: #70e000;
+    --main-police: 'Work Sans', sans-serif;
+    --second-police: 'Oxygen', sans-serif;
+    --navigation-disabled-btn-bg: #CCCCCC;
+    --navigation-disabled-btn-color: #666666;
+}
+.btn-gradient{
+    background: #FFFFFF;
+    background-image: -webkit-linear-gradient(top, #FFFFFF, var(--theme-fifth-color));
+    border-radius: 5px;
+    color: #000000;
+    border: solid var(--theme-fifth-color) 2px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+.btn-gradient:hover{
+    border: solid var(--theme-fifth-color) 2px;
+    background: var(--theme-fifth-color);
+    background-image: -webkit-linear-gradient(top, var(--theme-fifth-color), #FFFFFF);
+    border-radius: 5px;
+    text-decoration: none;
+}

@@ -1,0 +1,41 @@
+nav ul{
+    list-style: none;
+}
+nav ul li{
+    display: inline-block;
+    margin: 0px 5px;
+    background-color: var(--theme-third-color);
+    border-radius: 5px;
+    position: relative;
+}
+nav ul li a{
+    text-decoration: none;
+    line-height: 50px;
+    padding: 8px 15px;
+    color: white;
+    font-size: 1.2rem;
+    font-family: var(--main-police);
+}
+nav ul ul{
+    position: absolute;
+    top: 55px;
+    right: 0px;
+    z-index: 2;
+    display: none;
+}
+nav ul ul li{
+    margin: 0px;
+    width: 150px;
+    float: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--theme-fifth-color);
+}
+.active{
+    border-radius: 5px;
+    box-shadow: 0 0 15px 2px var(--theme-fifth-color);
+}
+nav ul .submenu{
+    display: block;
+}

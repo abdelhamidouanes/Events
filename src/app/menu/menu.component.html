@@ -1,0 +1,34 @@
+<nav>
+    <ul>
+        <li (click)="openCloseMenu(0)" [ngClass]="{'active': isOpen[0]}">
+            <a href="#">جدول الأعمال</a>
+        </li>
+        <li (click)="openCloseMenu(1)" [ngClass]="{'active': isOpen[1]}">
+            <a href="#">QRCode الخاص بي</a>
+        </li>
+        <li (click)="openCloseMenu(2)" [ngClass]="{'active': isOpen[2]}">
+            <a href="#">تصويت</a>
+            <ul [ngClass]="{'submenu': isOpen[2]}">
+                <li><a href="#">تصويتي</a></li>
+                <li><a href="">تصويت</a></li>
+            </ul>
+        </li>
+        <li (click)="openCloseMenu(3)" [ngClass]="{'active': isOpen[3]}">
+            <a href="#">اقتراح و تبليغ</a>
+            <ul [ngClass]="{'submenu': isOpen[3]}">
+                <li><a href="#">تبليغ</a></li>
+                <li><a href="">اقتراح</a></li>
+            </ul>
+        </li>
+        <li (click)="openCloseMenu(4)" [ngClass]="{'active': isOpen[4]}">
+            <a href="#">تقييم</a>
+        </li>
+        <li (click)="openCloseMenu(5)" [ngClass]="{'active': isOpen[5]}">
+            <a href="#">حسابي</a>
+            <ul [ngClass]="{'submenu': isOpen[5]}">
+                <li><a href="#">تغيير كلمة السر</a></li>
+                <li><a href="#">تسجيل الخروج</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>

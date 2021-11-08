@@ -1,0 +1,31 @@
+<div class="big-container">    
+    <div class="container">
+        <div class="title-container">
+            <p>S'identifier</p>
+        </div>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="one-input">
+                <input required placeholder="Username" id="email" name="email" type="email"  (keydown.enter)="onSubmit(f)" class="input-field" ngModel> 
+            </div>
+            <div class="one-input pw">
+                <input required placeholder="Mot de passe" id="password" name="password" type="password"  (keydown.enter)="onSubmit(f)" class="input-field" ngModel>
+            </div>
+            <div class="one-input forget-pw">
+                 <a href="#"><p>Mot de passe oublié ?</p></a>
+            </div>
+            <div class="submitbtn">
+                <button type="submit" [disabled]="f.invalid" class="submit-btn btn-gradient" id="connexion">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <p>Connexion</p>
+                </button>
+            </div>
+        </form>
+        <div class="separation-container"><div class="separation"></div></div>
+        <div class="submitbtn signup">
+            <a (click)="onCreateAccount()" class="submit-btn btn-gradient" id="create-account">
+                <i class="fas fa-user-plus"></i>
+                <p>Créer un compte</p>
+            </a>
+        </div>
+    </div> 
+</div>

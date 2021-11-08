@@ -1,0 +1,41 @@
+<div class="big-container">    
+    <div class="container">
+        <div class="title-container">
+            <p>S'inscrire</p>
+        </div>
+        <form #f="ngForm" (ngSubmit)="onCreateAccount(f)">
+            <div class="one-input">
+                <input required placeholder="Nom" id="nom" name="nom" type="text" class="input-field" ngModel> 
+            </div>
+            <div class="one-input">
+                <input required placeholder="Prénom" id="prenom" name="prenom" type="text" class="input-field" ngModel> 
+            </div>
+            <div class="one-input">
+                <input required placeholder="Age" id="age" name="age" type="number" class="input-field" ngModel> 
+            </div>
+            <div class="one-input">
+                <input required placeholder="Email" id="email" name="email" type="email" class="input-field" ngModel> 
+            </div>
+            <div class="one-input">
+                <input required placeholder="Mot de passe" id="password" name="password" type="password" class="input-field" ngModel>
+            </div>
+            <div class="one-input radio">
+                <label for="categorie">Catégorie</label>
+                <div class="one-radio">
+                    <input required type="radio" id="categorie1" name="categorie" value="Army" ngModel>
+                    <label for="categorie1">Army</label>
+                </div>
+                <div class="one-radio">
+                    <input type="radio" id="categorie2" name="categorie" value="Volontaire" ngModel>
+                    <label for="categorie2">Volontaire</label>
+                </div>
+            </div>
+            <div class="submitbtn signup">
+                <button type="submit" [disabled]="f.invalid" class="submit-btn btn-gradient" id="create-account">
+                    <i class="fas fa-user-plus"></i>
+                    <p>Créer un compte</p>
+                </button>
+            </div>
+        </form>
+    </div> 
+</div>

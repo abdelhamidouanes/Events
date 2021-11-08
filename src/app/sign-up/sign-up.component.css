@@ -1,0 +1,124 @@
+.big-container{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    min-height: 100vh;
+} 
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--theme-fifth-color);
+    width: 400px;
+    border-radius: 5px;
+} 
+.title-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--theme-fifth-color);
+    height: 40px;
+    padding: 5px 10px;
+} 
+.title-container img{
+    width: 16px;
+    margin-right: 5px;
+} 
+.title-container p{
+    font-family: var(--main-police);
+    font-size: 14px;
+} 
+.one-input{
+    width: 100%;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+.one-input label{
+    font-size: 10px;
+} 
+.input-field{
+    width: 100%;
+    height: 25px;
+    padding: 4px 10px;
+    margin: 5px 0px;
+    font-size: 12px;
+    font-family: var(--second-police);
+    border: 1px solid var(--theme-fifth-color);
+    border-radius: 4px;
+} 
+.one-input p{
+    padding: 4px 10px;
+    font-family: var(--second-police);
+    color: var(--theme-third-color);
+    font-size: 0.75rem;
+}
+#startingident{
+    height: 90px;
+    resize: none;
+} 
+form{
+    padding: 10px 30px;
+} 
+.submitbtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px;
+    margin-bottom: 20px;
+} 
+.signup{
+    border-bottom: none;
+    padding: 10px 0px;
+    margin: 10px 0px;
+}
+.submit-btn {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid var(--theme-fifth-color);
+    border-radius: 5px;
+ }
+ .submit-btn a{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ .submit-btn p{
+     font-size: 14px;
+     margin-left: 8px;
+     font-family: var(--second-police);
+ }
+ .submit-btn:disabled{
+    background-color: var(--navigation-disabled-btn-bg);
+    color: var(--navigation-disabled-btn-color);
+ }
+ .btn-gradient:disabled{
+    background-image: none !important;
+ }
+ #create-account{
+    background-image: -webkit-linear-gradient(top, #FFFFFF, var(--theme-sixth-color));
+ }
+
+@media screen and (max-width: 500px) {
+    .container{
+        width: 250px;
+    } 
+}
+@media screen and (max-height: 500px) {
+    form{
+        padding: 20px;
+    } 
+    .one-input{
+        margin: 2px 0px;
+    }
+    .submit-btn {
+        padding: 5;
+    }
+    #startingident{
+        height: 40px;
+    } 
+}
+

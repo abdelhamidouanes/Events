@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="logo-container">
+        <img [src]="imgFolder+ 'logoIwatch.png'" alt="logoIwatch">
+    </div>
+    <div class="menu-container">
+        <!-- <dx-menu
+                #menu
+                [dataSource]="topBar"
+                displayExpr="name"
+                showFirstSubmenuMode="onHover"
+                orientation="horizontal"
+                submenuDirection="auto"
+                [hideSubmenuOnMouseLeave]="true"
+                (onItemClick)="itemClick($event)"
+        >
+        </dx-menu> -->
+        <app-menu></app-menu>
+    </div>
+</div>
