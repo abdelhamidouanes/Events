@@ -36,7 +36,8 @@
     </div>
     <div class="attendance" *ngIf="!emptyAllAttendance()">
         <p>Liste des présents. (utiliser le nom d'utilisateur pour efféctuer une recherche)</p>
-        <dx-list 
+        <dx-list
+                class="list-presence" 
                 #list
                 selectionMode="none"
                 [dataSource]="allAttendance"

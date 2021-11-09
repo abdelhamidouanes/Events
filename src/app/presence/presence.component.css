@@ -88,3 +88,6 @@ form{
     border: 1px solid var(--theme-fifth-color);
     border-radius: 4px;
  }
+ .list-presence{
+     margin-bottom: 20px;
+ }
