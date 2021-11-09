@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.qrcode{
+    padding: 30px;
+    padding-bottom: 0px;
+}
+.qrcode-text{
+    font-size: 1rem;
+    font-family: var(--main-police);
+}
+#qr-title{
+    font-weight: bold;
+    font-style: oblique;
+}

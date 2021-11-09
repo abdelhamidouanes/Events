@@ -1,1 +1,55 @@
-<p>presence works!</p>
+<div class="container">
+    <div class="scanner">
+        <label for="session">Merci de choisir une session et scanner le QR code</label>
+        <dx-list 
+            class="session"
+            #list
+            selectionMode="single"
+            [dataSource]="allSession"
+            height="100"
+            width="50%" 
+            [searchEnabled]="true"
+            [scrollByContent]="true"
+            searchExpr="name"
+            searchMode="contains"
+            pageLoadMode="scrollBottom"
+            (onSelectionChanged)="onSelectionChanged(list.selectedItemKeys)">
+                <div *dxTemplate="let data of 'item'">
+                    <div class="no-selection">{{data.name}}</div>
+                </div>
+        </dx-list>
+        
+        <zxing-scanner #scanner (scanSuccess)="scanSuccessHandler($event)">
+        </zxing-scanner>
+        <form #f="ngForm" (ngSubmit)="onAddQRCodeText(f)">
+            <input placeholder="Saisir le nom d'ulisateur" type="text" name="qrcode-text" id="qrcode-text" class="qrcode-text" ngModel>
+            <div class="submitbtn">
+                <button type="submit" class="submit-btn btn-gradient" id="sendQRCode">
+                    <p>Ajouter présence</p>
+                </button>
+            </div>
+        </form>    
+        <p *ngIf="response!=''"
+        [ngClass]="{'response': true, 'success': successAttendance, echec: !successAttendance}">
+        {{response}}</p>
+        <p class="response" *ngIf="emptyAllAttendance()">Aucune présence n'a été enregistrer pour cette session.</p>
+    </div>
+    <div class="attendance" *ngIf="!emptyAllAttendance()">
+        <p>Liste des présents. (utiliser le nom d'utilisateur pour efféctuer une recherche)</p>
+        <dx-list 
+                #list
+                selectionMode="none"
+                [dataSource]="allAttendance"
+                height="100"
+                width="50%" 
+                [searchEnabled]="true"
+                [scrollByContent]="true"
+                searchExpr="username"
+                searchMode="contains"
+                pageLoadMode="scrollBottom">
+                    <div *dxTemplate="let data of 'item'">
+                        <div class="no-selection">{{data.username}} {{data.name}}</div>
+                    </div>
+        </dx-list>
+    </div>
+</div>

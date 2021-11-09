@@ -1,38 +1,17 @@
 <dx-scheduler
-    timeZone="America/Los_Angeles"
-    [dataSource]="appointmentsData"
-    currentView="day"
-    [currentDate]="currentDate"
-    [startDayHour]="9"
-    [height]="600"
-    [editing]="false"
-    views="['day', 'week']"
-    appointmentTooltipTemplate="tooltip-template"
-    (onAppointmentFormOpening)="onAppointmentFormOpening($event)">
-    <dxi-view
-        type="day"
-        [startDayHour]="9"
-        [endDayHour]="22">
-    </dxi-view>
-    <dxi-view
-        type="week"
-        [startDayHour]="9"
-        [endDayHour]="22">
-    </dxi-view>
-    <div *dxTemplate="let model of 'tooltip-template'">
-        <div class='movie-tooltip'>
-            <img [src]="imgFolder + getElementById(model.appointmentData.id).image" />
-            <div class='movie-info'>
-                <div class='movie-title'>
-                    {{getElementById(model.appointmentData.id).text}}
-                </div>
-                <div>
-                    {{getElementById(model.appointmentData.id).animation}}
-                </div>
-                <div>
-                    {{getElementById(model.appointmentData.id).description}}
-                </div>
-            </div>
-        </div>
-    </div>
+  timeZone="Europe/Paris"
+  [dataSource]="appointmentsData"
+  [views]="['day', 'workWeek', 'month']"
+  currentView="day"
+  [currentDate]="currentDate"
+  [startDayHour]="6"
+  [endDayHour]="19"
+  [height]="600"
+  dateSerializationFormat="yyyy-MM-dd HH:mm:ss"
+  textExpr="name"
+  startDateExpr="start"
+  endDateExpr="end"
+  allDayExpr="AllDay"
+  (onAppointmentFormOpening)="onAppointmentFormOpening($event)"
+>
 </dx-scheduler>

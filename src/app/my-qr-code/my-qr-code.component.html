@@ -1,0 +1,11 @@
+<div class="container">
+    <ngx-qrcode
+    class="qrcode"
+    [elementType]="elementType"
+    [errorCorrectionLevel]="correctionLevel"
+    [value]="username"
+    alt="Demo QR Code"
+    cssClass="bshadow"
+    [width]="300"></ngx-qrcode>
+    <p class="qrcode-text"><em id="qr-title">QRCode :</em> {{username}}</p>
+</div>

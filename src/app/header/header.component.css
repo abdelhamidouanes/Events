@@ -43,9 +43,15 @@
     position: absolute;
     left: -33px;
     top: 2px;
+}
+::ng-deep .dx-menu-horizontal>.dx-menu-items-container>.dx-menu-item-wrapper:nth-child(6)::before{
+    content:url('../../assets/img/qrcode.png');
+    z-index: 2;
+    position: absolute;
+    left: -33px;
+    top: 2px;
     
 }
-
 ::ng-deep .dx-menu-base{
     font-family: var(--main-police);
     font-size: 1rem;

@@ -35,9 +35,8 @@ export class SignInComponent implements OnInit {
       this.router.navigate(['/']);
       this.loadingService.unDisplayLoading();
     }else{
-      console.log('test not connected')
       this.popUpServiceService.setTitle('Erreur connexion.');
-      this.popUpServiceService.setMsg('Adresse email ou mot de passe incorrect.');
+      this.popUpServiceService.setMsg('Nom d\'utilisateur ou mot de passe incorrect.');
       this.popUpServiceService.displayPopUp();
       this.loadingService.unDisplayLoading();
     }

@@ -25,7 +25,7 @@
     z-index: 20;
     background-color: white;
     color: #000000;
-    border: 2px solid var(--borders-color);
+    border: 2px solid var(--theme-fifth-color);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--borders-color);
+    background-color: var(--theme-fifth-color);
     align-self: center;
     border-radius: 3px;
 } 
@@ -60,7 +60,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    border-bottom: 1px solid var(--borders-color);
+    border-bottom: 1px solid var(--theme-fifth-color);
 } 
 .msg-container p{
     font-size: 12px;

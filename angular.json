@@ -28,8 +28,9 @@
             ],
             "styles": [
               "node_modules/devextreme/dist/css/dx.common.css",
-              "node_modules/devextreme/dist/css/dx.light.css",
-              "src/styles.css"
+              "node_modules/devextreme/dist/css/dx.light.compact.css",
+              "src/styles.css",
+              "./node_modules/@mobiscroll/angular/dist/css/mobiscroll.min.css"
             ],
             "scripts": []
           },
