@@ -7,7 +7,7 @@
             selectionMode="single"
             [dataSource]="allSession"
             height="100"
-            width="50%" 
+            width="90%" 
             [searchEnabled]="true"
             [scrollByContent]="true"
             searchExpr="name"
@@ -15,7 +15,7 @@
             pageLoadMode="scrollBottom"
             (onSelectionChanged)="onSelectionChanged(list.selectedItemKeys)">
                 <div *dxTemplate="let data of 'item'">
-                    <div class="no-selection">{{data.name}}</div>
+                    <div class="no-selection">{{data.name}} | {{data.details}}</div>
                 </div>
         </dx-list>
         
@@ -43,7 +43,7 @@
                 selectionMode="none"
                 [dataSource]="allAttendance"
                 height="100"
-                width="50%" 
+                width="90%" 
                 [searchEnabled]="true"
                 [scrollByContent]="true"
                 searchExpr="username"
