@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiLink: '/api/'
+  apiLink: 'https://events.iwatch.tn/api/'
 };
