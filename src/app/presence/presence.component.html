@@ -15,7 +15,7 @@
             pageLoadMode="scrollBottom"
             (onSelectionChanged)="onSelectionChanged(list.selectedItemKeys)">
                 <div *dxTemplate="let data of 'item'">
-                    <div class="no-selection">{{data.name}}</div>
+                    <div class="no-selection">{{data.name}} {{data.start}} {{data.details}}</div>
                 </div>
         </dx-list>
         

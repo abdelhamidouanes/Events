@@ -1,5 +1,11 @@
 <nav *ngIf="updateIsOpen() && windowWidth>=1300">
     <ul>
+        <li>
+            <div class="menu-element">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf0LPeybwzWSbTkkzEx-TrH1WTxWWj_66gxLEcBBRlRVfch6g/viewform?vc=0&c=0&w=1&flr=0">التقييم العام</a>
+
+            </div>
+        </li>
         <li (click)="itemClick('programme')" [ngClass]="{'active': isOpen[0]}">
             <div class="menu-element">
                 <a>البرنامج</a>
@@ -14,7 +20,7 @@
         </li>
         <li (click)="itemClick('monqrcode')" [ngClass]="{'active': isOpen[2]}">
             <div class="menu-element">
-                <a>QRCode الخاص بي</a>
+                <a>QRCode</a>
                 <img [src]="imgFolder+ 'CODE.png'" alt="CODE">
             </div>
         </li>
@@ -32,7 +38,7 @@
         </li>
         <li (click)="itemClick('deconnexion')" [ngClass]="{'active': isOpen[5]}">
             <div class="menu-element">
-                <a>تسجيل الخروج</a>
+                <a> الخروج</a>
                 <img [src]="imgFolder+ 'MON COMPTE.png'" alt="MON COMPTE">
             </div>
         </li>
@@ -53,6 +59,12 @@
     <nav *ngIf="isOpenResMenu" id="responsive-menu" 
          [ngStyle]="{'width': windowWidth+'px', 'height': windowHeight+'px' }">
         <ul>
+            <li>
+                <div class="menu-element">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf0LPeybwzWSbTkkzEx-TrH1WTxWWj_66gxLEcBBRlRVfch6g/viewform?vc=0&c=0&w=1&flr=0">التقييم العام</a>
+    
+                </div>
+            </li>
             <li (click)="itemClick('programme')" [ngClass]="{'active': isOpen[0]}">
                 <div class="menu-element">
                     <a>البرنامج</a>
@@ -67,7 +79,7 @@
             </li>
             <li (click)="itemClick('monqrcode')" [ngClass]="{'active': isOpen[2]}">
                 <div class="menu-element">
-                    <a>QRCode الخاص بي</a>
+                    <a>QRCode</a>
                     <img [src]="imgFolder+ 'CODE.png'" alt="CODE">
                 </div>
             </li>
@@ -85,7 +97,7 @@
             </li>
             <li (click)="itemClick('deconnexion')" [ngClass]="{'active': isOpen[5]}">
                 <div class="menu-element">
-                    <a>تسجيل الخروج</a>
+                    <a> الخروج</a>
                     <img [src]="imgFolder+ 'MON COMPTE.png'" alt="MON COMPTE">
                 </div>
             </li>
