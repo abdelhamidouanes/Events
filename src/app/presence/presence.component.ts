@@ -1,8 +1,10 @@
 import { PopUpServiceService } from './../Services/pop-up-service.service';
 import { PresenceService } from './../Services/presence.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { Result } from '@zxing/library';
 
 @Component({
   selector: 'app-presence',
@@ -11,6 +13,14 @@ import { NgForm } from '@angular/forms';
 })
 export class PresenceComponent implements OnInit, OnDestroy {
  
+  @ViewChild('scanner') scanner: ZXingScannerComponent | any;
+  hasDevices: boolean| any;
+  hasPermission: boolean| any;
+  qrResultString: string| any;
+  qrResult: Result | any;
+  availableDevices: MediaDeviceInfo[]| any;
+  currentDevice: MediaDeviceInfo| any;
+
   response : string;
   allSession : any[];
   allSessionSubscription : Subscription;
@@ -66,6 +76,28 @@ export class PresenceComponent implements OnInit, OnDestroy {
     });
     this.presenceService.emitCurrentSession();
 
+
+    this.scanner.camerasFound.subscribe((devices: MediaDeviceInfo[]) => {
+        this.hasDevices = true;
+        this.availableDevices = devices;
+    });
+    this.scanner.camerasNotFound.subscribe(() => this.hasDevices = false);
+    this.scanner.scanComplete.subscribe((result: Result) => this.qrResult = result);
+    this.scanner.permissionResponse.subscribe((perm: boolean) => this.hasPermission = perm);
+
+  }
+
+
+  displayCameras(cameras: MediaDeviceInfo[]) {
+      this.availableDevices = cameras;
+  }
+
+  handleQrCodeResult(resultString: string) {
+      this.qrResultString = resultString;
+  }
+
+  onDeviceSelectChange(selectedValue: string) {
+      this.currentDevice = this.scanner.getDeviceById(selectedValue);
   }
 
   async scanSuccessHandler(qrcode: any):Promise<void> {

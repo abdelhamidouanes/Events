@@ -7,7 +7,7 @@
             selectionMode="single"
             [dataSource]="allSession"
             height="100"
-            width="50%" 
+            width="90%" 
             [searchEnabled]="true"
             [scrollByContent]="true"
             searchExpr="name"
@@ -15,12 +15,13 @@
             pageLoadMode="scrollBottom"
             (onSelectionChanged)="onSelectionChanged(list.selectedItemKeys)">
                 <div *dxTemplate="let data of 'item'">
-                    <div class="no-selection">{{data.name}} {{data.start}} {{data.details}}</div>
+                    <div class="no-selection">{{data.name}} | {{data.details}}</div>
                 </div>
         </dx-list>
         
-        <zxing-scanner #scanner (scanSuccess)="scanSuccessHandler($event)">
+        <zxing-scanner #scanner start="true" [device]="currentDevice" (scanSuccess)="scanSuccessHandler($event)">
         </zxing-scanner>
+        
         <form #f="ngForm" (ngSubmit)="onAddQRCodeText(f)">
             <input placeholder="ادخل اسم المستخدم" type="text" name="qrcode-text" id="qrcode-text" class="qrcode-text" ngModel>
             <div class="submitbtn">
@@ -42,7 +43,7 @@
                 selectionMode="none"
                 [dataSource]="allAttendance"
                 height="100"
-                width="50%" 
+                width="90%" 
                 [searchEnabled]="true"
                 [scrollByContent]="true"
                 searchExpr="username"

@@ -1,4 +1,3 @@
-import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,7 +9,7 @@ import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { OutletComponent } from './outlet/outlet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DxListModule, DxLoadPanelModule, DxMenuModule, DxSchedulerModule } from 'devextreme-angular';
+import { DxListModule, DxLoadPanelModule, DxSchedulerModule } from 'devextreme-angular';
 import { AgendaComponent } from './agenda/agenda.component';
 import { AlertMsgComponent } from './alert-msg/alert-msg.component';
 import { HeaderComponent } from './header/header.component';
@@ -51,13 +50,11 @@ import { ReviewComponent } from './review/review.component';
     ChangementpwComponent,
     ReviewComponent
   ],
-  imports: [ 
-    MbscModule, 
+  imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     DxLoadPanelModule,
-    DxMenuModule,
     NgxQRCodeModule,
     CommonModule,		
 		ZXingScannerModule,

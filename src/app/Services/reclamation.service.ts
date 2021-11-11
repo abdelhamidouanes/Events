@@ -44,23 +44,20 @@ export class ReclamationService {
   }
 
   async getListeReclamation(): Promise<boolean>{
-    // this.loadingService.displayLoading();
-    // let headers= new HttpHeaders({ 'Authorization': 'Bearer '+this.cookieService.get('tok')});
-    // try {
-    //   const data: any = await this.httpClient.get<any[]>(this.apiLink+'reclamations', { headers }).toPromise();
-    //   data.data.forEach((element:any, index: any) => {
-    //     this.reclamations[index]= data.data.content;
-    //   });
-    //   this.emitReclamation();
-    //   this.loadingService.unDisplayLoading();
-    //   return true;
-    // } catch (error: any) {
-    //     this.loadingService.unDisplayLoading();
-    //     return false;
-    // }
-    this.reclamations =  ['test','test2'];
-    this.emitReclamation();
-    return true;
+    this.loadingService.displayLoading();
+    let headers= new HttpHeaders({ 'Authorization': 'Bearer '+this.cookieService.get('tok')});
+    try {
+      const data: any = await this.httpClient.get<any[]>(this.apiLink+'reclamations', { headers }).toPromise();
+      data.data.forEach((element:any, index: any) => {
+        this.reclamations[index]= element.content;
+      });
+      this.emitReclamation();
+      this.loadingService.unDisplayLoading();
+      return true;
+    } catch (error: any) {
+        this.loadingService.unDisplayLoading();
+        return false;
+    }
   }
 
   emitReclamation(): void{

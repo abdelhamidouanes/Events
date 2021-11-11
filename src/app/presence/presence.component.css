@@ -2,7 +2,7 @@
       /* Root component needs to have height: 100% */
       height: 50% !important;
       /* Optional : you probably want full-width as well for landscape orientation or tablets */
-      width: 50%;
+      width: 90%;
   
     }
 ::ng-deep video{
