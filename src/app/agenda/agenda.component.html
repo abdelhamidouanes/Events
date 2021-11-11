@@ -4,14 +4,48 @@
   [views]="['day', 'workWeek', 'month']"
   currentView="day"
   [currentDate]="currentDate"
-  [startDayHour]="6"
-  [endDayHour]="19"
+  [startDayHour]="8"
+  [endDayHour]="24"
   [height]="600"
   dateSerializationFormat="yyyy-MM-dd HH:mm:ss"
   textExpr="name"
   startDateExpr="start"
   endDateExpr="end"
   allDayExpr="AllDay"
+  [editing]="false"
   (onAppointmentFormOpening)="onAppointmentFormOpening($event)"
+  appointmentTooltipTemplate="tooltip-template"
+  appointmentTemplate="appointment-template"
 >
+    <div *dxTemplate="let model of 'appointment-template'">
+      <div class="showtime-preview">
+        <div>{{model.appointmentData.name }} <strong>{{model.appointmentData.details}}</strong></div>
+        <div class="dropdown-appointment-dates">
+          {{
+            (model.appointmentData.start | date: "shortTime") +
+              " - " +
+            (model.appointmentData.end | date: "shortTime")
+          }}
+        </div>
+      </div>
+    </div>  
+    <div *dxTemplate="let model of 'tooltip-template'">
+      <div class='movie-tooltip'>
+        <div class="head"> 
+          إضغط لتقييم
+        </div>
+        <div class="body">
+          <div class='title'>
+            {{model.appointmentData.name}}
+          </div>
+          <div class="note">
+            {{
+              (model.appointmentData.start | date: "shortTime") +
+                " - " +
+              (model.appointmentData.end | date: "shortTime")
+            }}
+          </div>
+        </div>   
+      </div>
+    </div>
 </dx-scheduler>

@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="background" (click)="onClick()"></div> 
+    <div class="msg-box-container">
+        <div class="title-container"><p>تقييم</p><em (click)="onClick()" class="far fa-window-close"></em></div>
+        <div class='movie-tooltip'>
+            <div class="head"> 
+              <div class='title'>
+                {{session.name}}
+              </div>
+              <div class="note">
+                <i [ngClass]="{'fas': true, 'fa-star': true, 'golden': note>=1}" (click)="onStarClick(1)"></i>
+                <i [ngClass]="{'fas': true, 'fa-star': true, 'golden': note>=2}" (click)="onStarClick(2)"></i>
+                <i [ngClass]="{'fas': true, 'fa-star': true, 'golden': note>=3}" (click)="onStarClick(3)"></i>
+                <i [ngClass]="{'fas': true, 'fa-star': true, 'golden': note>=4}" (click)="onStarClick(4)"></i>
+                <i [ngClass]="{'fas': true, 'fa-star': true, 'golden': note>=5}" (click)="onStarClick(5)"></i>
+              </div>
+            </div>
+            <div class="body">
+              <form #f="ngForm" (ngSubmit)="onSubmitReview(f)">
+                  <div class="one-input">
+                      <input [placeholder]="observation" id="observation" name="observation" type="text" class="input-field" ngModel> 
+                  </div>
+                  <div class="ok-btn">
+                      <button type="submit" class="btn-gradient" id="envoie">
+                          <p>إرسال</p>
+                      </button>
+                  </div>
+              </form>
+            </div>   
+          </div>
+    </div>
+</div> 

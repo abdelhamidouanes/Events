@@ -24,6 +24,10 @@ import { MyQrCodeComponent } from './my-qr-code/my-qr-code.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { CommonModule } from '@angular/common';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ReclamationComponent } from './reclamation/reclamation.component';
+import { ProgrammeComponent } from './programme/programme.component';
+import { ChangementpwComponent } from './changementpw/changementpw.component';
+import { ReviewComponent } from './review/review.component';
 
 
 @NgModule({
@@ -41,7 +45,11 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     VoteComponent,
     PresenceComponent,
     MenuComponent,
-    MyQrCodeComponent
+    MyQrCodeComponent,
+    ReclamationComponent,
+    ProgrammeComponent,
+    ChangementpwComponent,
+    ReviewComponent
   ],
   imports: [ 
     MbscModule, 

@@ -1,21 +1,36 @@
-::ng-deep .movie-tooltip .movie-info {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: top;
-    text-align: left;
-}
-
-::ng-deep .movie-tooltip img {
-    height: 60px;
-    margin-bottom: 10px;
-}
-
-::ng-deep .movie-tooltip .movie-title {
-    font-size: 1em;
+::ng-deep .movie-tooltip .head {
+    font-size: 1.3em;
     font-weight: bold;
     line-height: 25px;
 }
-
+::ng-deep .movie-tooltip{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+::ng-deep .movie-tooltip .head{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+::ng-deep .movie-tooltip .head .note{
+    color: var(--navigation-disabled-btn-bg);
+}
+::ng-deep .movie-tooltip .body{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+::ng-deep .movie-tooltip .body form{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 ::ng-deep .long-title h3 {
     font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
     font-weight: 200;
@@ -25,7 +40,7 @@
 }
 
 ::ng-deep .dx-tooltip-wrapper .dx-overlay-content .dx-popup-content {
-    padding: 14px;
+    padding: 10px;
 }
 
 ::ng-deep .showtime-preview > div:first-child {

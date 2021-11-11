@@ -1,6 +1,6 @@
 <div class="container">
     <div class="scanner">
-        <label for="session">Merci de choisir une session et scanner le QR code</label>
+        <label for="session"> QR code الرجاء اختيار جلسة ومسح</label>
         <dx-list 
             class="session"
             #list
@@ -22,20 +22,20 @@
         <zxing-scanner #scanner (scanSuccess)="scanSuccessHandler($event)">
         </zxing-scanner>
         <form #f="ngForm" (ngSubmit)="onAddQRCodeText(f)">
-            <input placeholder="Saisir le nom d'ulisateur" type="text" name="qrcode-text" id="qrcode-text" class="qrcode-text" ngModel>
+            <input placeholder="ادخل اسم المستخدم" type="text" name="qrcode-text" id="qrcode-text" class="qrcode-text" ngModel>
             <div class="submitbtn">
                 <button type="submit" class="submit-btn btn-gradient" id="sendQRCode">
-                    <p>Ajouter présence</p>
+                    <p>إضافة حضور</p>
                 </button>
             </div>
         </form>    
         <p *ngIf="response!=''"
         [ngClass]="{'response': true, 'success': successAttendance, echec: !successAttendance}">
         {{response}}</p>
-        <p class="response" *ngIf="emptyAllAttendance()">Aucune présence n'a été enregistrer pour cette session.</p>
+        <p class="response" *ngIf="emptyAllAttendance()">لم يتم تسجيل حضور لهذه الجلسة</p>
     </div>
     <div class="attendance" *ngIf="!emptyAllAttendance()">
-        <p>Liste des présents. (utiliser le nom d'utilisateur pour efféctuer une recherche)</p>
+        <p>قائمة الحاضرين. (إستعمل اسم المستخدم للبحث)</p>
         <dx-list
                 class="list-presence" 
                 #list

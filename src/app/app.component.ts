@@ -1,3 +1,4 @@
+import { ReviewService } from './Services/review.service';
 import { PopUpServiceService } from './Services/pop-up-service.service';
 import { imgFolder } from './shared/constantes';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -27,17 +28,26 @@ export class AppComponent implements OnInit, OnDestroy{
   displayed : boolean;
   displayedSubscription : Subscription;
 
-  constructor(private loadingService: LoadingService, private popUpServiceService: PopUpServiceService){
+  displayedReview : boolean;
+  displayedReviewSubscription : Subscription;
+
+  constructor(private loadingService: LoadingService, 
+              private popUpServiceService: PopUpServiceService,
+              private reviewService: ReviewService){
 
     this.loading = false;
     this.loadingSubscription = new Subscription();
 
     this.displayed = false;
     this.displayedSubscription = new Subscription();
+
+    this.displayedReview = false;
+    this.displayedReviewSubscription = new Subscription();
   }
   ngOnDestroy(): void {
     this.displayedSubscription.unsubscribe();
     this.displayedSubscription.unsubscribe();
+    this.displayedReviewSubscription.unsubscribe();
   }
 
 
@@ -51,6 +61,11 @@ export class AppComponent implements OnInit, OnDestroy{
       this.displayed = data;
     });
     this.popUpServiceService.emitDisplayed();
+
+    this.displayedReviewSubscription = this.reviewService.displayedSubject.subscribe(data => {
+      this.displayedReview = data;
+    });
+    this.reviewService.emitDisplayed();
   }
 
 }

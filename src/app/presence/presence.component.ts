@@ -45,8 +45,9 @@ export class PresenceComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
 
     if(!await this.presenceService.getAllSessions()){
-      this.popUpServiceService.setTitle('Erreur chargement des sessions');
-      this.popUpServiceService.setMsg('La liste des sessions n\'a pas pu être chargée');
+      this.popUpServiceService.setBigTitle('خطأ في التحميل');
+      this.popUpServiceService.setTitle('خطأ في تحميل الجلسات');
+      this.popUpServiceService.setMsg('لا يمكن تحميل قائمة الجلسات');
       this.popUpServiceService.displayPopUp();
     }
 
@@ -71,22 +72,24 @@ export class PresenceComponent implements OnInit, OnDestroy {
     if(!this.loadingScanAddQRcode){
         this.loadingScanAddQRcode = true;
         if(this.currentSession==''){
-          this.popUpServiceService.setTitle('Ajout d\'une nouvelle présence impossible');
-          this.popUpServiceService.setMsg('Veuillez selectionner une session.');
+          this.popUpServiceService.setBigTitle('خطأ أثناء الإضافة');
+          this.popUpServiceService.setTitle('إضافة حضور جديد غير ممكن');
+          this.popUpServiceService.setMsg('يرجى تحديد جلسة ');
           this.popUpServiceService.displayPopUp();
         }else{
           if(!await this.presenceService.addNewAttendance(this.currentSession, qrcode)){
-            this.popUpServiceService.setTitle('Erreur ajout de présence');
-            this.popUpServiceService.setMsg('Erreur d\'ajout ou de chargement de la liste des présent.');
+            this.popUpServiceService.setBigTitle('خطأ في الإرسال أو التحميل');
+            this.popUpServiceService.setTitle('خطأ أثناء إضافة الحضور ');
+            this.popUpServiceService.setMsg('خطأ في إضافة أو تحميل قائمة الحاضرين');
             this.popUpServiceService.displayPopUp();
             this.successAttendance = false;
-            this.response = 'Echec lors de l\'ajout de la nouvelle présence';
+            this.response = 'فشل في إضافة حضور جديد';
             setTimeout(() => {
               this.response ='';
             }, 5000);
           }else{
             this.successAttendance = true;
-            this.response = 'Ajout effectué avec succés de '+qrcode+'.';
+            this.response = qrcode+'إضافة حضور بنجاح ';
             setTimeout(() => {
               this.response ='';
             }, 5000);
@@ -99,8 +102,9 @@ export class PresenceComponent implements OnInit, OnDestroy {
   async onSelectionChanged(session : any):Promise<void>{
     this.presenceService.setCurrentSession(session[0].id);
     if(!await this.presenceService.getAllAttendance(session[0].id)){
-      this.popUpServiceService.setTitle('Erreur chargement des présence');
-      this.popUpServiceService.setMsg('La liste des présences n\'a pas pu être chargée');
+      this.popUpServiceService.setBigTitle('خطأ في التحميل');
+      this.popUpServiceService.setTitle('خطأ في تحميل قائمة الحضور');
+      this.popUpServiceService.setMsg('لا يمكن تحميل قائمة الحضور');
       this.popUpServiceService.displayPopUp();
     }
   }
@@ -110,22 +114,24 @@ export class PresenceComponent implements OnInit, OnDestroy {
     if(!this.loadingScanAddQRcode){
       this.loadingScanAddQRcode = true;
       if(qrcode=='' || this.currentSession==''){
-        this.popUpServiceService.setTitle('Ajout d\'une nouvelle présence impossible');
-        this.popUpServiceService.setMsg('Veuillez selectionner une session et saisir le nom d\'utilisateur.');
+        this.popUpServiceService.setBigTitle('خطأ أثناء الإضافة');
+        this.popUpServiceService.setTitle('إضافة حضور جديد غير ممكن');
+        this.popUpServiceService.setMsg('يرجى تحديد جلسة وإدخال اسم المستخدم');
         this.popUpServiceService.displayPopUp();
       }else{
         if(!await this.presenceService.addNewAttendance(this.currentSession, qrcode)){
-          this.popUpServiceService.setTitle('Erreur ajout de présence');
-          this.popUpServiceService.setMsg('Erreur d\'ajout ou de chargement de la liste des présent.');
+          this.popUpServiceService.setBigTitle('خطأ في الإرسال أو التحميل');
+          this.popUpServiceService.setTitle('خطأ أثناء إضافة الحضور ');
+          this.popUpServiceService.setMsg('خطأ في إضافة أو تحميل قائمة الحاضرين');
           this.popUpServiceService.displayPopUp();
           this.successAttendance = false;
-          this.response = 'Echec lors de l\'ajout de la nouvelle présence';
+          this.response = 'فشل في إضافة حضور جديد';
           setTimeout(() => {
             this.response ='';
           }, 5000);
         }else{
           this.successAttendance = true;
-          this.response = 'Ajout effectué avec succés de '+qrcode+'.';
+          this.response = 'إضافة حضور بنجاح ل '+qrcode+'.';
           setTimeout(() => {
             this.response ='';
           }, 5000);

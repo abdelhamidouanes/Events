@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { AuthentificationService } from '../Services/authentification.service';
 import { Router } from '@angular/router';
 import { PopUpServiceService } from '../Services/pop-up-service.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,10 +20,14 @@ export class SignInComponent implements OnInit {
   constructor(private loadingService: LoadingService,
               private authentificationService: AuthentificationService,
               private router: Router,
-              private popUpServiceService: PopUpServiceService) { }
+              private popUpServiceService: PopUpServiceService,
+              private cookieService: CookieService) { }
 
 
   ngOnInit(): void {
+    if(this.cookieService.get('tok')!='' && this.cookieService.get('tok')!=null){
+      this.router.navigate(['/']);
+    }
   }
 
 
@@ -35,8 +40,9 @@ export class SignInComponent implements OnInit {
       this.router.navigate(['/']);
       this.loadingService.unDisplayLoading();
     }else{
-      this.popUpServiceService.setTitle('Erreur connexion.');
-      this.popUpServiceService.setMsg('Nom d\'utilisateur ou mot de passe incorrect.');
+      this.popUpServiceService.setBigTitle('خطأ أثناء تسجيل الدخول')
+      this.popUpServiceService.setTitle('خطأ في الإتصال');
+      this.popUpServiceService.setMsg('اسم المستخدم أو كلمة المرور غير صحيحة');
       this.popUpServiceService.displayPopUp();
       this.loadingService.unDisplayLoading();
     }

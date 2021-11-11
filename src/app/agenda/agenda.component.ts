@@ -1,3 +1,5 @@
+import { PopUpServiceService } from './../Services/pop-up-service.service';
+import { ReviewService } from './../Services/review.service';
 import { environment } from './../../environments/environment';
 import { imgFolder } from './../shared/constantes';
 import { Component, enableProdMode, OnInit } from '@angular/core';
@@ -6,6 +8,7 @@ import { AgendaService } from '../Services/agenda.service';
 import { Subscription } from 'rxjs';
 import * as AspNetData from 'devextreme-aspnet-data-nojquery';
 import { CookieService } from 'ngx-cookie-service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -21,7 +24,10 @@ export class AgendaComponent implements OnInit {
 
   imgFolder = imgFolder;  
 
-  constructor(private agendaService : AgendaService, private cookieService: CookieService) {
+  constructor(private agendaService : AgendaService, 
+              private cookieService: CookieService,
+              private reviewService: ReviewService,
+              private popUpServiceService: PopUpServiceService) {
     const url = environment.apiLink;
 
     this.appointmentsData = AspNetData.createStore({
@@ -36,8 +42,19 @@ export class AgendaComponent implements OnInit {
   async ngOnInit(): Promise<void> {
   }
 
-  onAppointmentFormOpening(data: any){
-    data.cancel = true;  
+  async onAppointmentFormOpening(data: any){
+    data.cancel = true;
+    this.reviewService.initNoteObservation();
+    this.reviewService.setSession(data.appointmentData);
+    const getReview: boolean = await this.reviewService.getReview();
+    if(!getReview){
+      this.popUpServiceService.setBigTitle('خطأ أثناء تحميل التقييم')
+      this.popUpServiceService.setTitle('خطأ في الإتصال');
+      this.popUpServiceService.setMsg('لا يمكن تحميل تقييم هذه الجلسة');
+      this.popUpServiceService.displayPopUp();
+    }else{
+      this.reviewService.displayPopUp();
+    }
   }
 
 }

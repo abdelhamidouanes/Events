@@ -131,5 +131,22 @@ export class PresenceService {
     }
   }
 
+  async changePassWord(pw: string, pwc: string): Promise<boolean>{
+    this.loadingService.displayLoading();
+    if(this.cookieService.get('tok')==null){
+      return false;
+    }else{
+      let headers= new HttpHeaders({ 'Authorization': 'Bearer '+this.cookieService.get('tok')});
+      const body = {'password_confirmation': pwc, 'password': pw};
+      try {
+        const data: any = await this.httpClient.post<any[]>(this.apiLink+'auth/profile/password', body, { headers }).toPromise();
+        this.loadingService.unDisplayLoading();
+        return true;
+      } catch (error) {
+        this.loadingService.unDisplayLoading();
+        return false;
+      }
+    }
+  }
 
 }

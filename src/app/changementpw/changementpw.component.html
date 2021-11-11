@@ -1,0 +1,21 @@
+<div class="big-container">    
+    <div class="container">
+        <div class="title-container">
+            <p>تغيير كلمة السر</p>
+        </div>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="one-input pw">
+                <input required placeholder="كلمة السر" id="password" name="password" type="password"  (keydown.enter)="onSubmit(f)" class="input-field" ngModel>
+            </div>
+            <div class="one-input pw">
+                <input required placeholder="تأكيد كلمة السر" id="passwordc" name="passwordc" type="password"  (keydown.enter)="onSubmit(f)" class="input-field" ngModel>
+            </div>
+            <div class="submitbtn">
+                <button type="submit" [disabled]="f.invalid" class="submit-btn btn-gradient" id="connexion">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <p>تأكيد</p>
+                </button>
+            </div>
+        </form>
+    </div> 
+</div>

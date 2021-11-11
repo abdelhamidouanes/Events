@@ -8,7 +8,9 @@ export class PopUpServiceService {
 
   private displayed : boolean;
   displayedSubject : Subject<boolean>;
-  
+
+  private bigTitle : string;
+  bigTitleSubject : Subject<string>;
 
   private title : string;
   titleSubject : Subject<string>;
@@ -21,6 +23,11 @@ export class PopUpServiceService {
     this.displayedSubject = new Subject<boolean>();
     this.emitDisplayed();
 
+
+    this.bigTitle = '';
+    this.bigTitleSubject = new Subject<string>();
+    this.emitBigTitle();
+
     this.title = '';
     this.titleSubject = new Subject<string>();
     this.emitTitle();
@@ -32,6 +39,10 @@ export class PopUpServiceService {
 
   emitDisplayed(): void{
     this.displayedSubject.next(this.displayed);
+  }
+
+  emitBigTitle(): void{
+    this.bigTitleSubject.next(this.bigTitle);
   }
 
   emitTitle(): void{
@@ -51,6 +62,12 @@ export class PopUpServiceService {
     this.displayed = false;
     this.emitDisplayed();
   }
+
+  setBigTitle(bigTitle: string): void{
+    this.bigTitle = bigTitle;
+    this.emitBigTitle();
+  }
+
 
   setTitle(title: string): void{
     this.title = title;

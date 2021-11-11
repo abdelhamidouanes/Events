@@ -1,9 +1,14 @@
-<div class="container">
-    <div class="logo-container">
-        <img [src]="imgFolder+ 'logoIwatch.png'" alt="logoIwatch">
+<div [ngClass]="{'container' : true, 
+                 'container-height': windowWidth>=1300, 
+                 'container-height2': windowWidth<1300}">
+    <div [ngClass]="{'logo-container': windowWidth>=1300, 'logo-container2': windowWidth<1300}">
+        <img [src]="imgFolder+ 'event.png'" alt="eventIwatch"
+            [ngClass]="{'event-logo': windowWidth>=1300, 'event-logo2': windowWidth<1300}">
+        <img [src]="imgFolder+ 'IWatch.png'" alt="logoIwatch">
+        <img [src]="imgFolder+ 'itlogo.png'" alt="logoIt">
     </div>
     <div class="menu-container">
-        <dx-menu
+        <!-- <dx-menu
                 #menu
                 [dataSource]="topBar"
                 displayExpr="name"
@@ -13,6 +18,7 @@
                 [hideSubmenuOnMouseLeave]="true"
                 (onItemClick)="itemClick($event)"
         >
-        </dx-menu>
+        </dx-menu> -->
+        <app-menu *ngIf="displayMenu()"></app-menu>
     </div>
 </div>

@@ -107,4 +107,28 @@ export class AuthentificationService {
     }
   }
 
+  async createAccount(username: string, name:string, pw: string, pwconfirmation: string): Promise<boolean>{
+    try {
+      let headers= new HttpHeaders({ 'Authorization': 'Bearer 3|X74aa13ooP9wkFQPtPr8XLkzAnLlUiCog1IqkJAm'});
+      const body = {
+        'username': username,
+        'name': name,
+        'password_confirmation': pwconfirmation,
+        'password': pw
+      };
+      const data : any = await this.httpClient.post<any[]>(this.apiLink+'auth/register', body, { headers }).toPromise();
+      this.connected = true;
+      this.token = data.access_token;
+      this.username = username;
+      this.cookieService.set('tok', this.token);
+      this.emitConnected();
+      this.emitToken();
+      this.emitUsername();
+      return true;  
+    } catch (error) {
+      console.log('erreur creation compte '+ error);
+      return false;
+    }
+  }
+
 }

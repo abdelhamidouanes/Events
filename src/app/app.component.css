@@ -2,3 +2,6 @@
     width: 100vw;
     height: 100vh;
 }
+.alert-msg{
+    z-index: 2000000000;
+}

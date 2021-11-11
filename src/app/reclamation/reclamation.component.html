@@ -1,0 +1,18 @@
+<div class="container">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="one-input">
+            <textarea placeholder="الرجاء إدخال نص التبليغ" id="reclamation" name="reclamation" type="text" class="input-field" ngModel></textarea>
+        </div>
+        <div class="ok-btn">
+            <button type="submit" class="btn-gradient" id="reclamer">
+                <p>تبليغ</p>
+            </button>
+        </div>
+    </form>
+    <div class="liste-reclamation">
+        <div class="title">قائمة الشكاوى</div>
+        <div *ngFor="let reclamation of reclamations" class="one-reclamation">
+            <p>{{reclamation}}</p>
+        </div>
+    </div>
+</div>

@@ -9,4 +9,5 @@
     [closeOnOutsideClick]="false"
     [indicatorSrc]="imgFolder + 'loading.gif'">
 </dx-load-panel>
-<app-alert-msg *ngIf="displayed"></app-alert-msg>
+<app-review *ngIf="displayedReview"></app-review>
+<app-alert-msg *ngIf="displayed" class="alert-msg"></app-alert-msg>
