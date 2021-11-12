@@ -7,6 +7,7 @@ import { AuthentificationService } from '../Services/authentification.service';
 import { PresenceService } from '../Services/presence.service';
 import { Subscription } from 'rxjs';
 import { imgFolder } from '../shared/constantes';
+import Integer from '@zxing/library/esm/core/util/Integer';
 
 @Component({
   selector: 'app-menu',
@@ -20,6 +21,8 @@ export class MenuComponent implements OnInit, OnDestroy {
   isOpenSubscription: Subscription;
   username: string;
   usernameSubscription: Subscription;
+  category_id: Integer;
+  category_idSubscription: Subscription;
   windowWidth: any;
   windowHeight: any;
   isOpenResMenu : boolean;
@@ -35,6 +38,8 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.isOpenSubscription = new Subscription();
     this.username = '';
     this.usernameSubscription = new Subscription();
+    this.category_id = '';
+    this.category_idSubscription = new Subscription();
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
     this.isOpenResMenu = false;
@@ -44,6 +49,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.isOpenSubscription.unsubscribe();
     this.usernameSubscription.unsubscribe();
+    this.category_idSubscription.unsubscribe();
     this.isOpenResMenuSubscription.unsubscribe();
   }
 
@@ -51,7 +57,11 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.usernameSubscription = this.authentificationService.usernameSubject.subscribe(data => {
       this.username = data;
     });
+    this.category_idSubscription = this.authentificationService.category_idSubject.subscribe(data => {
+      this.category_id = data;
+    });
     this.authentificationService.emitUsername();
+    this.authentificationService.emitCategoryId();
 
     this.isOpenSubscription = this.menuService.isOpenSubject.subscribe(data => {
       this.isOpen = data;

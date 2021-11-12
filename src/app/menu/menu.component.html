@@ -37,7 +37,7 @@
                 <img [src]="imgFolder+ 'MON COMPTE.png'" alt="MON COMPTE">
             </div>
         </li>
-        <li *ngIf="username=='admin'" (click)="itemClick('presence')" [ngClass]="{'active': isOpen[6]}">
+        <li *ngIf="category_id==1" (click)="itemClick('presence')" [ngClass]="{'active': isOpen[6]}">
             <div class="menu-element">
                 <a>حضور</a>
                 <img [src]="imgFolder+ 'CODE.png'" alt="CODE">
@@ -97,7 +97,7 @@
                     <img [src]="imgFolder+ 'MON COMPTE.png'" alt="MON COMPTE">
                 </div>
             </li>
-            <li *ngIf="username=='admin'" (click)="itemClick('presence')" [ngClass]="{'active': isOpen[6]}">
+            <li *ngIf="category_id==1" (click)="itemClick('presence')" [ngClass]="{'active': isOpen[6]}">
                 <div class="menu-element">
                     <a>حضور</a>
                     <img [src]="imgFolder+ 'CODE.png'" alt="CODE">

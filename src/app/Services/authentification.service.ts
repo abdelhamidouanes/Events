@@ -4,6 +4,7 @@ import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import Integer from '@zxing/library/esm/core/util/Integer';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,9 @@ export class AuthentificationService {
   tokenSubject : Subject<string>;
 
   private username: string;
+  private category_id: Integer;
   usernameSubject : Subject<string>;
+  category_idSubject : Subject<Integer>;
 
   apiLink = environment.apiLink;
 
@@ -27,8 +30,9 @@ export class AuthentificationService {
     this.token = '';
     this.tokenSubject = new Subject<string>();
     this.username = '';
+    this.category_id = 0;
     this.usernameSubject = new Subject<string>();
-    
+    this.category_idSubject = new Subject<Integer>();
     this.emitConnected();
   }
 
@@ -44,7 +48,9 @@ export class AuthentificationService {
         this.connected = true;
         this.token = this.cookieService.get('tok');
         this.username = data.username;
+        this.category_id = data.category_id;
         this.emitUsername();
+        this.emitCategoryId();
         this.emitToken();
         this.emitConnected();
         this.loadingService.unDisplayLoading();
@@ -70,6 +76,10 @@ export class AuthentificationService {
     this.usernameSubject.next(this.username);
   }
 
+  emitCategoryId(): void{
+    this.category_idSubject.next(this.category_id);
+  }
+
   async connect(email: string, password: string): Promise<boolean>{
     const httpBody = {'username' : email, 'password' : password};
     try {
@@ -85,6 +95,7 @@ export class AuthentificationService {
     this.emitConnected();
     this.emitToken();
     this.emitUsername();
+    this.emitCategoryId();
     return this.connected;
   }
 
@@ -100,6 +111,7 @@ export class AuthentificationService {
       this.emitConnected();
       this.emitToken();
       this.emitUsername();
+      this.emitCategoryId();
       return true;  
     } catch (error) {
       console.log('erreur deconnexion '+ error);
@@ -123,7 +135,7 @@ export class AuthentificationService {
       this.cookieService.set('tok', this.token);
       this.emitConnected();
       this.emitToken();
-      this.emitUsername();
+      this.emitCategoryId();
       return true;  
     } catch (error) {
       console.log('erreur creation compte '+ error);
