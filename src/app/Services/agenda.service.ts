@@ -22,10 +22,11 @@ export class AgendaService {
     const headers= new HttpHeaders({ 'Authorization': 'Bearer '+this.cookieService.get('tok')});
     const data: any = await this.httpClient.get<any[]>(this.apiLink+'sessions', { headers }).toPromise();
     data.data.forEach((element: any, index: any) => {
+        console.log(typeof element.start);
         this.appointmentsData[index] = {
             'title': element.name,
-            'start': new Date(element.start),
-            'end': new Date(element.end),
+            'start': element.start,
+            'end': element.end,
             'color': '#ff6d42'
         }
     });                        

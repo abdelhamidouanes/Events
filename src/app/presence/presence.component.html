@@ -6,7 +6,7 @@
             #list
             selectionMode="single"
             [dataSource]="allSession"
-            height="100"
+            height="400"
             width="90%" 
             [searchEnabled]="true"
             [scrollByContent]="true"
@@ -30,9 +30,14 @@
                 </button>
             </div>
         </form>    
-        <p *ngIf="response!=''"
-        [ngClass]="{'response': true, 'success': successAttendance, echec: !successAttendance}">
-        {{response}}</p>
+        <div class="response-nextbtn" *ngIf="response!=''">
+            <button  class="submit-btn btn-gradient" *ngIf="successAttendance" (click)="onNextClick()">
+                التالي
+            </button>
+            <p
+            [ngClass]="{'response': true, 'success': successAttendance, echec: !successAttendance}">
+            {{response}}</p>
+        </div>    
         <p class="response" *ngIf="emptyAllAttendance()">لم يتم تسجيل حضور لهذه الجلسة</p>
     </div>
     <div class="attendance" *ngIf="!emptyAllAttendance()">
@@ -42,7 +47,7 @@
                 #list
                 selectionMode="none"
                 [dataSource]="allAttendance"
-                height="100"
+                height="400"
                 width="90%" 
                 [searchEnabled]="true"
                 [scrollByContent]="true"

@@ -35,6 +35,7 @@ label{
     font-size: 1.2rem;
     text-align: center;
     margin: 10px 0px;
+    margin-left: 20px;
 }  
 .attendance p{
     font-family: var(--main-police);
@@ -90,4 +91,10 @@ form{
  }
  .list-presence{
      margin-bottom: 20px;
+ }
+ .response-nextbtn{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 10px 0px;
  }

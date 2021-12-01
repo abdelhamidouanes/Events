@@ -119,15 +119,16 @@ export class PresenceComponent implements OnInit, OnDestroy {
             setTimeout(() => {
               this.response ='';
             }, 5000);
+            this.loadingScanAddQRcode = false;
           }else{
             this.successAttendance = true;
-            this.response = qrcode+'إضافة حضور بنجاح ';
+            this.response = qrcode+'إضافة حضور بنجاح '; 
             setTimeout(() => {
               this.response ='';
+              this.loadingScanAddQRcode = false;
             }, 5000);
           }
         }
-        this.loadingScanAddQRcode = false;
     }
   }
 
@@ -161,20 +162,26 @@ export class PresenceComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             this.response ='';
           }, 5000);
+          this.loadingScanAddQRcode = false;
         }else{
           this.successAttendance = true;
           this.response = 'إضافة حضور بنجاح ل '+qrcode+'.';
           setTimeout(() => {
             this.response ='';
+            this.loadingScanAddQRcode = false;
           }, 5000);
         }
       }
-      this.loadingScanAddQRcode = false;
     }
   }
 
   emptyAllAttendance(): boolean{
     return this.allAttendance.length ==0 ;
+  }
+
+  onNextClick(){
+    this.loadingScanAddQRcode = false;
+    this.response ='';
   }
 
 }
