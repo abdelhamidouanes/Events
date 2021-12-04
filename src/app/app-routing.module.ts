@@ -5,6 +5,7 @@ import { ChangementpwComponent } from './changementpw/changementpw.component';
 import { HomeComponent } from './home/home.component';
 import { MyQrCodeComponent } from './my-qr-code/my-qr-code.component';
 import { PresenceComponent } from './presence/presence.component';
+import { Presence2Component } from './presence2/presence2.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path : 'signUp', component : SignUpComponent},
   {path : 'myQrCode', canActivate: [AuthGuardService], component : MyQrCodeComponent},
   {path : 'attendance', canActivate: [AuthGuardService], component : PresenceComponent},
+  {path : 'attendance2', canActivate: [AuthGuardService], component : Presence2Component},
   {path : 'reclamation', canActivate: [AuthGuardService], component : ReclamationComponent},
   {path : 'changepw', canActivate: [AuthGuardService], component : ChangementpwComponent},
   {path : 'agenda', canActivate: [AuthGuardService], component : AgendaComponent},

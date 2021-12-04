@@ -27,6 +27,7 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 import { ProgrammeComponent } from './programme/programme.component';
 import { ChangementpwComponent } from './changementpw/changementpw.component';
 import { ReviewComponent } from './review/review.component';
+import { Presence2Component } from './presence2/presence2.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { ReviewComponent } from './review/review.component';
     ReclamationComponent,
     ProgrammeComponent,
     ChangementpwComponent,
-    ReviewComponent
+    ReviewComponent,
+    Presence2Component
   ],
   imports: [
     BrowserModule,

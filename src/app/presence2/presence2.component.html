@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="scanner">
+        <label for="session"> QR code الرجاء مسح</label>
+        <zxing-scanner #scanner start="true" [device]="currentDevice" (scanSuccess)="scanSuccessHandler($event)">
+        </zxing-scanner>
+        
+        <form #f="ngForm" (ngSubmit)="onAddQRCodeText(f)">
+            <input placeholder="ادخل اسم المستخدم" type="text" name="qrcode-text" id="qrcode-text" class="qrcode-text" ngModel>
+            <div class="submitbtn">
+                <button type="submit" class="submit-btn btn-gradient" id="sendQRCode">
+                    <p>إضافة حضور</p>
+                </button>
+            </div>
+        </form>    
+        <div class="response-nextbtn" *ngIf="response!=''">
+            <button  class="submit-btn btn-gradient" *ngIf="successAttendance" (click)="onNextClick()">
+                التالي
+            </button>
+            <p
+            [ngClass]="{'response': true, 'success': successAttendance, echec: !successAttendance}">
+            {{response}}</p>
+        </div>    
+        <p class="response" *ngIf="emptyAllAttendance()">لم يتم تسجيل حضور لهذه الجلسة</p>
+    </div>
+    <div class="attendance" *ngIf="!emptyAllAttendance()">
+        <p>قائمة الحاضرين. (إستعمل اسم المستخدم للبحث)</p>
+        <dx-list
+                class="list-presence" 
+                #list
+                selectionMode="none"
+                [dataSource]="allAttendance"
+                height="150"
+                width="90%" 
+                [searchEnabled]="true"
+                [scrollByContent]="true"
+                searchExpr="username"
+                searchMode="contains"
+                pageLoadMode="scrollBottom">
+                    <div *dxTemplate="let data of 'item'">
+                        <div class="no-selection">{{data.username}} {{data.name}}</div>
+                    </div>
+        </dx-list>
+    </div>
+    <button class="submit-btn btn-gradient" (click)="onClickChangeCurrentSession()">تغيير الجلسة</button>
+</div>
