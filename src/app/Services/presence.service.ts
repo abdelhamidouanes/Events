@@ -21,6 +21,9 @@ export class PresenceService {
   private currentSession: string;
   currentSessionSubject: Subject<string>;
 
+  private currentSessionName: string;
+  currentSessionNameSubject: Subject<string>;
+
   constructor(private loadingService: LoadingService, private cookieService: CookieService, private httpClient: HttpClient) { 
     this.allSession = [];
     this.allAttendance = [];
@@ -28,6 +31,8 @@ export class PresenceService {
     this.allAttendanceSubject = new Subject<any>();
     this.currentSession = '';
     this.currentSessionSubject = new Subject<string>();
+    this.currentSessionName = '';
+    this.currentSessionNameSubject = new Subject<string>();
   }
 
   emitAllSessions(): void{
@@ -49,6 +54,10 @@ export class PresenceService {
     this.currentSessionSubject.next(this.currentSession);
   }
 
+  emitCurrentSessionName(): void{
+    this.currentSessionNameSubject.next(this.currentSessionName);
+  }
+
   setCurrentSession(newSession: string): void{
     this.currentSession = newSession;
     this.emitCurrentSession();
@@ -56,6 +65,17 @@ export class PresenceService {
 
   initCurrentSession(): void{
     this.currentSession = '';
+    this.emitCurrentSession();
+  }
+
+  setCurrentSessionName(newSessionName: string): void{
+    this.currentSessionName = newSessionName;
+    this.emitCurrentSessionName();
+  }
+
+  initCurrentSessionName(): void{
+    this.currentSessionName = '';
+    this.emitCurrentSessionName();
   }
 
   async getAllSessions(): Promise<boolean>{
@@ -87,6 +107,25 @@ export class PresenceService {
         const data: any = await this.httpClient.get<any[]>(this.apiLink+'attendance/'+sessionId, { headers }).toPromise();
         this.allAttendance = data.data;
         this.emitAllAttendance();
+        this.loadingService.unDisplayLoading();
+        return true;
+      } catch (error) {
+        this.loadingService.unDisplayLoading();
+        return false;
+      }
+    }
+  }
+
+  async deleteInvitedAttendance(sessionId: string, invitedUserName: string): Promise<boolean>{
+    this.loadingService.displayLoading();
+    if(this.cookieService.get('tok')==null){
+      return false;
+    }else{
+      const body = {};
+      let headers= new HttpHeaders({ 'Authorization': 'Bearer '+this.cookieService.get('tok')});
+      try {
+        await this.httpClient.put<any[]>(this.apiLink+'attendance/'+sessionId+'/user/'+invitedUserName, body, { headers }).toPromise();
+        await this.getAllAttendance(sessionId);
         this.loadingService.unDisplayLoading();
         return true;
       } catch (error) {

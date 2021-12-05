@@ -107,6 +107,7 @@ export class MenuComponent implements OnInit, OnDestroy {
         }
         if(item=='presence'){
           this.presenceService.initCurrentSession();
+          this.presenceService.initCurrentSessionName();
           this.presenceService.initAllAttendance();
           this.router.navigate(['/attendance']);
           this.loadingService.unDisplayLoading();
@@ -137,6 +138,8 @@ export class MenuComponent implements OnInit, OnDestroy {
     }else if(this.router.url=='/changepw'){
       index = 4;
     }else if(this.router.url=='/attendance'){
+      index = 6;
+    }else if(this.router.url=='/attendance2'){
       index = 6;
     }
     this.menuService.updateIsOpen(index);

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="scanner">
-        <label for="session"> QR code الرجاء مسح</label>
+        <label for="session">إضافة حضور لجلسة {{currentSessionName}}</label>
         <zxing-scanner #scanner start="true" [device]="currentDevice" (scanSuccess)="scanSuccessHandler($event)">
         </zxing-scanner>
         
@@ -13,7 +13,7 @@
             </div>
         </form>    
         <div class="response-nextbtn" *ngIf="response!=''">
-            <button  class="submit-btn btn-gradient" *ngIf="successAttendance" (click)="onNextClick()">
+            <button  class="submit-btn btn-gradient" (click)="onNextClick()">
                 التالي
             </button>
             <p
@@ -30,9 +30,10 @@
                 selectionMode="none"
                 [dataSource]="allAttendance"
                 height="150"
-                width="90%" 
+                width="70%" 
                 [searchEnabled]="true"
                 [scrollByContent]="true"
+                (onItemHold)="onSelection($event)"
                 searchExpr="username"
                 searchMode="contains"
                 pageLoadMode="scrollBottom">

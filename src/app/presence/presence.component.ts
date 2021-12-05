@@ -59,6 +59,7 @@ export class PresenceComponent implements OnInit, OnDestroy {
 
   async onSelectionChanged(session : any):Promise<void>{
     this.presenceService.setCurrentSession(session[0].id);
+    this.presenceService.setCurrentSessionName(session[0].name);
     if(!await this.presenceService.getAllAttendance(session[0].id)){
       this.popUpServiceService.setBigTitle('خطأ في التحميل');
       this.popUpServiceService.setTitle('خطأ في تحميل قائمة الحضور');

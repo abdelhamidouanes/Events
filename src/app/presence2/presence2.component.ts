@@ -34,6 +34,9 @@ export class Presence2Component implements OnInit, OnDestroy {
   currentSession: string;
   currentSessionSubscription: Subscription;
 
+  currentSessionName: string;
+  currentSessionNameSubscription: Subscription;
+
   constructor(private presenceService: PresenceService, 
               private popUpServiceService: PopUpServiceService,
               private router: Router) { 
@@ -43,6 +46,8 @@ export class Presence2Component implements OnInit, OnDestroy {
     this.successAttendance = false;
     this.currentSession = '';
     this.currentSessionSubscription = new Subscription();
+    this.currentSessionName = '';
+    this.currentSessionNameSubscription = new Subscription();
     this.loadingScanAddQRcode = false;
   }
 
@@ -58,6 +63,10 @@ export class Presence2Component implements OnInit, OnDestroy {
     });
     this.presenceService.emitCurrentSession();
 
+    this.currentSessionNameSubscription = this.presenceService.currentSessionNameSubject.subscribe(data => {
+      this.currentSessionName = data;
+    });
+    this.presenceService.emitCurrentSessionName();
 
     this.scanner.camerasFound.subscribe((devices: MediaDeviceInfo[]) => {
         this.hasDevices = true;
@@ -104,8 +113,8 @@ export class Presence2Component implements OnInit, OnDestroy {
             this.response = 'فشل في إضافة حضور جديد';
             setTimeout(() => {
               this.response ='';
-            }, 5000);
-            this.loadingScanAddQRcode = false;
+              this.loadingScanAddQRcode = false;
+            }, 10000);
           }else{
             this.successAttendance = true;
             this.response = qrcode+'إضافة حضور بنجاح '; 
@@ -163,6 +172,21 @@ export class Presence2Component implements OnInit, OnDestroy {
 
   onClickChangeCurrentSession(){
     this.router.navigate(['/attendance']);
+  }
+
+  async onSelection(event: any): Promise<void>{
+    const invitedUserName = event.itemData.username;
+    if(!await this.presenceService.deleteInvitedAttendance(this.currentSession, invitedUserName)){
+      this.popUpServiceService.setBigTitle('خطأ أثناء الحذف');
+      this.popUpServiceService.setTitle('خطأ أثناء الحذف');
+      this.popUpServiceService.setMsg('حدث خطأ أثناء إزالة الضيف من هذه الجلسة');
+      this.popUpServiceService.displayPopUp();
+    }else{
+      this.popUpServiceService.setBigTitle('حذف ناجح');
+      this.popUpServiceService.setTitle(' حذف ناجح من الجلسة '+ this.currentSessionName);
+      this.popUpServiceService.setMsg('تمت حذف الضيف '+ invitedUserName);
+      this.popUpServiceService.displayPopUp();
+    }
   }
 
 }
